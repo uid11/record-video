@@ -1,0 +1,10 @@
+{
+  "short_name": "Record video",
+  "name": "Record video from web camera",
+  "start_url": "/",
+  "background_color": "#000000",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#3367D6",
+  "description": "Record webm video from web camera"
+}
