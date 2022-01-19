@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Record webm video from web camera" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'" />
     <title>Record video</title>
     <link
       rel="icon"
@@ -95,7 +96,7 @@
     <h3>Record video from web camera</h3>
     <button id="startButton">Start</button>
     <button id="stopButton">Stop</button>
-    <a id="downloadLink" hidden>Download</a>
+    <a href="#" id="downloadLink" hidden>Download</a>
     <p>State: <span id="stateSpan"></span><span id="durationSpan"></span></p>
     <video
       autoplay
