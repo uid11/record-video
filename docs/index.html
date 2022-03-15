@@ -6,7 +6,7 @@
     <meta name="description" content="Record webm video from web camera" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; img-src 'self' data:; script-src 'sha256-OGBue6AjDHTB15WBwN0ZhgTsghFC+TZNMjXJUmrMepA=' 'sha256-o0mcF/LQDKY40/muzJ80RgmKF4VSwew7Xq2Titqzaz8=';"
+      content="default-src 'self'; img-src 'self' data:; script-src 'sha256-Oqc5nhUE/Z0+0HXSoODwiBhfcG+7moasmo0KYr30NqY=' 'sha256-o0mcF/LQDKY40/muzJ80RgmKF4VSwew7Xq2Titqzaz8=';"
     />
     <title>Record video</title>
     <link rel="manifest" href="./manifest.json" />
@@ -90,8 +90,6 @@
         )} - ${getTime(endTime)}.webm`;
         downloadLink.click();
 
-        URL.revokeObjectURL(downloadLink.href);
-
         updateState();
       });
     </script>
@@ -100,7 +98,7 @@
     <h3>Record video from web camera</h3>
     <button id="startButton">Start</button>
     <button id="stopButton">Stop</button>
-    <a href="#" id="downloadLink" hidden>Download</a>
+    <a id="downloadLink">Download</a>
     <p>State: <span id="stateSpan"></span><span id="durationSpan"></span></p>
     <video
       autoplay
