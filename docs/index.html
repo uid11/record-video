@@ -8,6 +8,7 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; img-src 'self' data:; script-src 'sha256-1x4/8I5t4LZi8+ZrjF/s4Vo/0HvL6jCnnpuG+1xXtxo=' 'sha256-o0mcF/LQDKY40/muzJ80RgmKF4VSwew7Xq2Titqzaz8=';"
     />
+    <meta name="theme-color" content="#3367D6" />
     <title>Record video</title>
     <link rel="manifest" href="./manifest.json" />
     <link
@@ -109,7 +110,7 @@
     <h3>Record video from web camera</h3>
     <button id="startButton">Start</button>
     <button id="stopButton">Stop</button>
-    <a id="downloadLink">Download</a>
+    <a id="downloadLink" href="#">Download</a>
     <p>State: <span id="stateSpan"></span><span id="durationSpan"></span></p>
     <video
       autoplay
@@ -119,7 +120,7 @@
       width="640"
       height="480"
     ></video>
-    <script type="module">
+    <script async type="module">
       /**
        * {@link https://github.com/yusitnikov/fix-webm-duration}
        */

@@ -1,10 +1,18 @@
 {
-  "short_name": "Record video",
-  "name": "Record video from web camera",
-  "start_url": "/",
   "background_color": "#000000",
+  "description": "Record webm video from web camera",
   "display": "standalone",
+  "icons": [
+    {
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "icon.png",
+      "type": "image/png"
+    }
+  ],
+  "name": "Record video from web camera",
   "scope": "/",
-  "theme_color": "#3367D6",
-  "description": "Record webm video from web camera"
+  "short_name": "Record video",
+  "start_url": "/",
+  "theme_color": "#3367D6"
 }
