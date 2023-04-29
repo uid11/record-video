@@ -6,7 +6,7 @@
     <meta name="description" content="Record webm video from web camera" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; img-src 'self' data:; script-src 'sha256-1x4/8I5t4LZi8+ZrjF/s4Vo/0HvL6jCnnpuG+1xXtxo=' 'sha256-o0mcF/LQDKY40/muzJ80RgmKF4VSwew7Xq2Titqzaz8=';"
+      content="default-src 'self'; img-src 'self' data:; script-src 'sha256-pW9IUZAi98J6W0GBRU4X2QQgxs4SPqdC0oR1CwOj8Iw=' 'sha256-o0mcF/LQDKY40/muzJ80RgmKF4VSwew7Xq2Titqzaz8='; style-src 'sha256-X5boXE/LW53EHh4X6yo/VP9PoUOQsqN83hRpLs3cIXs=';"
     />
     <meta name="theme-color" content="#3367D6" />
     <title>Record video</title>
@@ -16,6 +16,14 @@
       type="image/png"
       href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAZCAIAAAA5RHCCAAAAA3NCSVQICAjb4U/gAAAAGXRFWHRTb2Z0d2FyZQBnbm9tZS1zY3JlZW5zaG907wO/PgAAAmlJREFUSIljFBISevfuHQMtgZCQEJzNRFObMAELnMXOzo4h+/PnTyrbB/UfE3vs0Q8/MMD///+/v31+48D6GanuiqxUsRASuEzssWe+/8cLPuxrd+Ym1wo4wB5//378+PHjB6oYv31BX6w+M1k2IgBW+241OvBycnIycwg4Jcx7BLOXiUPP1UEGymZHAMxwRpJETxP40ue/nx/3L2xcf+EfXISPgw/CCG44B4vjD8vT5ZB1cYqnnoIlhbcXetSJt4+BgYGBATlUf7x88QrC2rtgxnWoDIddQpgkkiKriHgNDqj6gwtm3STFPn6r8PZAA6ia3x92L98Bte/dzZXrD3yDsIUNQv3V4eaoBUYYsjEwMDAw/PtxesmCy+hGYk2f37+/f//++3ckkd/vL7T7SyNrNAxf+wUmu6/dFGqaeus9mOD99THcMCvggKj88OH+xmh9LjSHMrG77Xj+D6Lgy/VuSDyFtl+FaXrR687LQKR9f7+jeA5iZbA8I5qVMf1w02/WmXMxMJituA51wbf7s/VgaZOgfTfrzFkYGBiUzdP23f8GF325v1gBLS7US+Ghd266q5L91JcYIUyCfQwMDEr2vY8RnnwxxV8E1Ua5nv1fIXI/nq/qn38XFjyHEpACgwT7GBj4K9e/hUu8Od+Nlp/M4rd++Y8OHm5PEUJSQ7g8QwIf5zXMeALjCBvE5qJ68cyKmSde/EfV8nLzjA24alTC9d/LixOnIbSLRzRkKCDJ/vu5c/mG+8jqvz/YvHDHG1ymEVPfvlrasQDJizklKF78uWXGiidI/AsbFp3GXWsyDvP2xKh9Q9s+ABGe/pFgQVYkAAAAAElFTkSuQmCC"
     />
+    <style>
+      a {
+        background-color: #6b6b6b;
+        border-radius: 2px;
+        color: #ffffff;
+        padding: 0px 6px 3px;
+      }
+    </style>
     <script type="module">
       const maxDurationInSeconds = 10 * 60;
 
@@ -104,6 +112,23 @@
 
         updateState();
       });
+
+      try {
+        const registration = await navigator.serviceWorker.register(
+          "/record-video/sw.js",
+          { scope: "/record-video/", type: "module" }
+        );
+
+        if (registration.installing) {
+          console.log("Service worker installing");
+        } else if (registration.waiting) {
+          console.log("Service worker installed");
+        } else if (registration.active) {
+          console.log("Service worker active");
+        }
+      } catch (error) {
+        console.error(`Registration failed with ${error}`);
+      }
     </script>
   </head>
   <body>
