@@ -11,8 +11,8 @@
     }
   ],
   "name": "Record video from web camera",
-  "scope": "/",
+  "scope": "/record-video/",
   "short_name": "Record video",
-  "start_url": "/",
+  "start_url": "/record-video/",
   "theme_color": "#3367D6"
 }
