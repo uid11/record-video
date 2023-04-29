@@ -6,7 +6,7 @@
     <meta name="description" content="Record webm video from web camera" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; img-src 'self' data:; script-src 'sha256-pW9IUZAi98J6W0GBRU4X2QQgxs4SPqdC0oR1CwOj8Iw=' 'sha256-o0mcF/LQDKY40/muzJ80RgmKF4VSwew7Xq2Titqzaz8='; style-src 'sha256-X5boXE/LW53EHh4X6yo/VP9PoUOQsqN83hRpLs3cIXs='; worker-src https://uid11.github.io/;"
+      content="default-src 'self'; img-src 'self' data:; script-src 'sha256-dC6PWXyKkrUD3Kf+4QxT4bO4+MynePQIswcn1wre72Y=' 'sha256-o0mcF/LQDKY40/muzJ80RgmKF4VSwew7Xq2Titqzaz8='; style-src 'sha256-X5boXE/LW53EHh4X6yo/VP9PoUOQsqN83hRpLs3cIXs='; worker-src https://uid11.github.io/;"
     />
     <meta name="theme-color" content="#3367D6" />
     <title>Record video</title>
@@ -113,22 +113,26 @@
         updateState();
       });
 
-      try {
-        const registration = await navigator.serviceWorker.register(
-          "/record-video/sw.js",
-          { scope: "/record-video/", type: "module" }
-        );
+      const registerServiceWorker = async () => {
+        try {
+          const registration = await navigator.serviceWorker.register(
+            "/record-video/sw.js",
+            { scope: "/record-video/", type: "module" }
+          );
 
-        if (registration.installing) {
-          console.log("Service worker installing");
-        } else if (registration.waiting) {
-          console.log("Service worker installed");
-        } else if (registration.active) {
-          console.log("Service worker active");
+          if (registration.installing) {
+            console.log("Service worker installing");
+          } else if (registration.waiting) {
+            console.log("Service worker installed");
+          } else if (registration.active) {
+            console.log("Service worker active");
+          }
+        } catch (error) {
+          console.error(`Registration failed with ${error}`);
         }
-      } catch (error) {
-        console.error(`Registration failed with ${error}`);
-      }
+      };
+
+      registerServiceWorker();
     </script>
   </head>
   <body>
