@@ -1,11 +1,11 @@
 const addResourcesToCache = async (resources) => {
-  const cache = await caches.open("v1");
+  const cache = await caches.open("v2");
 
   await cache.addAll(resources);
 };
 
 const putInCache = async (request, response) => {
-  const cache = await caches.open("v1");
+  const cache = await caches.open("v2");
 
   await cache.put(request, response);
 };
@@ -22,6 +22,7 @@ const cacheFirst = async ({ request, preloadResponsePromise }) => {
   if (preloadResponse) {
     console.info("Using preload response", preloadResponse);
     putInCache(request, preloadResponse.clone());
+
     return preloadResponse;
   }
 
