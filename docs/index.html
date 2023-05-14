@@ -6,7 +6,7 @@
     <meta name="description" content="Record webm video from web camera" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; img-src 'self' data:; script-src 'sha256-dC6PWXyKkrUD3Kf+4QxT4bO4+MynePQIswcn1wre72Y=' 'sha256-o0mcF/LQDKY40/muzJ80RgmKF4VSwew7Xq2Titqzaz8='; worker-src https://uid11.github.io/;"
+      content="default-src 'self'; img-src 'self' data:; script-src 'sha256-qL3yjfLFUnfgvsf/R6gXKCXc49TRBijeoUFm4r2blVk=' 'sha256-o0mcF/LQDKY40/muzJ80RgmKF4VSwew7Xq2Titqzaz8='; worker-src https://uid11.github.io/;"
     />
     <meta name="theme-color" content="#3367D6" />
     <title>Record video</title>
@@ -21,7 +21,12 @@
 
       const getDate = (date) => new Date(date).toISOString().slice(0, 10);
       const getTime = (date) => new Date(date).toISOString().slice(11, 19);
-      const options = { mimeType: "video/webm;codecs=vp9" };
+
+      const vp8 = "video/webm; codecs=vp8";
+      const vp9 = "video/webm; codecs=vp9";
+      const mimeType = MediaRecorder.isTypeSupported(vp9) ? vp9 : vp8;
+      const options = { mimeType };
+
       const recordedChunks = [];
 
       let intervalId;
